@@ -47,3 +47,20 @@ CREATE TABLE Weather_Of (
     FOREIGN KEY (Location_ID) REFERENCES Location(Location_ID),
     PRIMARY KEY (Weather_ID, Location_ID)
 );
+
+DELIMITER //
+CREATE TRIGGER update_airport_status
+AFTER INSERT ON Weather_Of
+FOR EACH ROW
+BEGIN
+    DECLARE precip FLOAT;
+
+    SELECT Total_Precipitation INTO precip FROM Weather WHERE Weather_ID = NEW.Weather_ID;
+
+    IF precip > 10 THEN
+        UPDATE Airport
+        SET Airport_Status = 'Temporarily Closed'
+        WHERE Location_ID = NEW.Location_ID;
+    END IF;
+END;//
+DELIMITER ;
