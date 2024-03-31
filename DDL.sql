@@ -22,7 +22,7 @@ CREATE TABLE Has_Departure (
     DepDateTime DATETIME,
     Delay FLOAT,
     Airport_ID INT,
-    FOREIGN KEY (Airport_ID) REFERENCES Airport(Airport_ID),
+    FOREIGN KEY (Airport_ID) REFERENCES Airport(Airport_ID) ON DELETE CASCADE,
     PRIMARY KEY (DepDateTime, Airport_ID)
 );
 
