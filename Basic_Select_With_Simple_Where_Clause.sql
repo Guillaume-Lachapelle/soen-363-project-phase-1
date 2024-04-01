@@ -1,0 +1,1 @@
+SELECT * from Weather WHERE Max_Temp > 35;
