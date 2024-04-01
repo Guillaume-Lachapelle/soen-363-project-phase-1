@@ -1,6 +1,7 @@
 pip install pandas numpy
 pip install openmeteo-requests
 pip install requests-cache retry-requests
+pip install mysql-connector-python
 
 run filter_airports.py
 run combine_filtered_data.py
