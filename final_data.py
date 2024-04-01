@@ -2,8 +2,8 @@ import pandas as pd
 
 def get_final_data():
     # Load the data from the CSV files
-    combined_filtered_data_df = pd.read_csv('combined_filtered_data.csv')
-    weather_per_location_df = pd.read_csv('weather_per_location.csv')
+    combined_filtered_data_df = pd.read_csv('combined_filtered_data.csv', encoding='utf-8')
+    weather_per_location_df = pd.read_csv('weather_per_location.csv', encoding='utf-8')
 
     # Convert 'date' to datetime and remove the time component in both dataframes
     combined_filtered_data_df['date'] = pd.to_datetime(combined_filtered_data_df['date']).dt.date
