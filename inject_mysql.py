@@ -4,7 +4,7 @@ def inject_mysql():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="qwerty72"
+    password="your_password_here"
   )
 
   print('Connected to MySQL database.')
