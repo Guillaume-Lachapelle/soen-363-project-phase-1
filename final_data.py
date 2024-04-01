@@ -17,5 +17,5 @@ def get_final_data():
     # Drop the 'date' and 'DepTime' columns
     merged_df.drop(columns=['date', 'DepTime'], inplace=True)
 
-    # Write the merged dataframe to a new CSV file
-    merged_df.to_csv('final_data.csv', index=False)
+    # Write the first 1500000 rows of the merged dataframe to a new CSV file
+    merged_df.head(1500000).to_csv('final_data.csv', index=False, encoding='utf-8')

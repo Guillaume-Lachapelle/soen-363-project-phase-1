@@ -22,6 +22,7 @@ def combine_filtered():
     # For the 'DepTime' column, convert the float values to HH:MM format
     filtered_columns_df['DepTime'] = filtered_columns_df['DepTime'].apply(lambda x: '{:04}'.format(int(x)) if pd.notnull(x) else '0000')
     filtered_columns_df['DepTime'] = filtered_columns_df['DepTime'].apply(lambda x: f"{x.zfill(4)[:2]}:{x.zfill(4)[2:]}")
+    filtered_columns_df['DepTime'] = filtered_columns_df['DepTime'].replace('24:00', '00:00')
     
     # Write the final dataframe to a new CSV file
     filtered_columns_df.to_csv('combined_filtered_data.csv', index=False)
