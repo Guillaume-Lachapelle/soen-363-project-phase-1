@@ -13,8 +13,5 @@ def get_intervals():
     # Flatten the MultiIndex columns
     date_intervals_df.columns = ['_'.join(col).strip('_') for col in date_intervals_df.columns.values]
 
-    # Rename the columns
-    # date_intervals_df.rename(columns={'date_min': 'date_min', 'date_max': 'date_max'}, inplace=True)
-
     # Write the dataframe to a new CSV file
     date_intervals_df.to_csv('date_intervals.csv', index=False)
