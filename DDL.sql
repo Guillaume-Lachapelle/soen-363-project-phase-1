@@ -55,22 +55,22 @@ FOR EACH ROW
 BEGIN
     DECLARE precip FLOAT;
     DECLARE gust_max FLOAT;
-    DECLARE weather_date DATE;
+    DECLARE w_date DATE;
 
     SELECT Total_Precipitation INTO precip FROM Weather WHERE Weather_ID = NEW.Weather_ID;
     SELECT Wind_Gust_Max INTO gust_max FROM Weather WHERE Weather_ID = NEW.Weather_ID;
-    SELECT Weather_Date INTO weather_date FROM Weather WHERE Weather_ID = NEW.Weather_ID;
-
-	IF (CURDATE() = weather_date) THEN
+    SELECT Weather_Date INTO w_date FROM Weather WHERE Weather_ID = NEW.Weather_ID;
+    
+	 IF (CURDATE() = w_date) THEN
 		IF (precip > 10 OR gust_max > 80) THEN
 			UPDATE Airport
-			SET Airport_Status = 'Temporarily Closed'
-			WHERE Location_ID = NEW.Location_ID;
-		ELSE 
-			UPDATE Airport
-			SET Airport_Status = 'Open'
-			WHERE Location_ID = NEW.Location_ID;
-		END IF;
-    END IF;
+	 		SET Airport_Status = 'Temporarily Closed'
+	 		WHERE Location_ID = NEW.Location_ID AND Airport_Status <> 'Closed';
+	 	ELSE 
+	 		UPDATE Airport
+	 		SET Airport_Status = 'Open'
+	 		WHERE Location_ID = NEW.Location_ID AND Airport_Status <> 'Closed';
+	 	END IF;
+     END IF;
 END;//
 DELIMITER ;
