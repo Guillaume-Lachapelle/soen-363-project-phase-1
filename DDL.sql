@@ -28,7 +28,7 @@ CREATE TABLE Has_Departure (
 
 CREATE TABLE Weather (
     Weather_ID INT PRIMARY KEY AUTO_INCREMENT,
-    Weather_Date DATETIME,
+    Weather_Date DATE,
     Max_Temp FLOAT,
     Min_Temp FLOAT,
     Mean_Temp FLOAT,
@@ -55,7 +55,7 @@ FOR EACH ROW
 BEGIN
     DECLARE precip FLOAT;
     DECLARE gust_max FLOAT;
-    DECLARE weather_date DATETIME;
+    DECLARE weather_date DATE;
 
     SELECT Total_Precipitation INTO precip FROM Weather WHERE Weather_ID = NEW.Weather_ID;
     SELECT Wind_Gust_Max INTO gust_max FROM Weather WHERE Weather_ID = NEW.Weather_ID;
